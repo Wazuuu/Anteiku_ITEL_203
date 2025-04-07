@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anteiku Coffee Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="Anteiku Logo">
+            <h2>Anteiku</h2>
+            <p>Original Taste <br> Est. 1987</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="order.html" class="btn">Buy Now <span class="arrow">&#10148;</span></a>
+    </aside>
+
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h1>Welcome to our cafe</h1><br><br><br><br>
+                    <p>"Welcome to Anteiku – Where Every Sip Feels Like Home!" ☕🍃</p><br><br><br>
+                    <p>We are open 7 days a week<br><strong>8AM - 9PM</strong></p><br><br><br><br>
+                    <a href="order.html" class="order-btn">Order Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us -->
+        <section class="about">
+            <div class="about-content">
+                <div class="about-left">
+                    <h3>ABOUT US —</h3>
+                    <h2>A few words about our cafe</h2>
+                    <p>We aim to provide the best quality coffee with a touch of comfort. Our cafe is a place where people can enjoy a cozy atmosphere, whether alone or with friends.</p>
+                    <ul>
+                        <li>Freshly brewed coffee daily</li>
+                        <li>Friendly and welcoming staff</li>
+                    </ul>
+                    <a href="about.html" class="about-btn">MORE ABOUT US</a>
+                </div>
+                <div class="about-right">
+                    <div>
+                        <h2>20</h2>
+                        <p>Years of Experience</p>
+                    </div>
+                    <div>
+                        <h2>234</h2>
+                        <p>Happy Customers Daily</p>
+                    </div>
+                    <img src="kape.JPG" alt="Coffee Cups">
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu -->
+        <section class="menu">
+            <h2>Our Menu</h2>
+            <div class="menu-cards">
+                <div class="card">
+                    <img src="coffee1.jpg" alt="Espresso">
+                    <h5>Espresso</h5>
+                    <p>Rich and creamy shot of coffee.</p>
+                </div>
+                <div class="card">
+                    <img src="coffee2.jpg" alt="Latte">
+                    <h5>Latte</h5>
+                    <p>Silky smooth with steamed milk.</p>
+                </div>
+                <div class="card">
+                    <img src="coffee3.jpg" alt="Cappuccino">
+                    <h5>Cappuccino</h5>
+                    <p>Frothy milk with bold coffee flavor.</p>
+                </div>
+            </div>
+            <a href="products.html" class="menu-btn">See Full Menu</a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>DO YOU HAVE QUESTIONS?</h3>
+                    <p>noreply@anteiku.com</p>
+                </div>
+                <div class="footer-column">
+                    <p class="address">LOCATION: <br>20th ward <br> Nerima <br> Japan</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-skype"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>BOOK A TABLE</h3>
+                    <p>+81 (0) 383 766 284</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Anteiku | All Rights Reserved | Powered by HTML & CSS</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const content = document.querySelector('.main-content');
+            sidebar.classList.toggle('active');
+            content.classList.toggle('shifted');
+        }
+    </script>
+</body>
+
+</html>

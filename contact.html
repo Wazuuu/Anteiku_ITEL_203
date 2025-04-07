@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anteiku Coffee Shop - Contact</title>
+    <link rel="stylesheet" href="cstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+
+<div class="container">
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="Anteiku Logo">
+            <h2>Anteiku</h2>
+            <p>Original Taste <br> Est. 1987</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <a href="order.html" class="btn">Buy Now ➤</a>
+    </aside>
+
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="main-content">
+        <section class="hero-section">
+            <div class="hero-overlay">
+                <div class="hero-content container py-5">
+                    <h1 class="display-4">Feel free to contact us</h1>
+                    <p class="lead">We're here to help!</p>
+                    <p class="mt-5">We are open 7 days a week<br><strong>8AM - 9PM</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="info-container">
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>CONTACT INFO</h3>
+                    <p>+81(0) 383 766 284</p>
+                    <p>noreply@anteiku.com</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>GET IN TOUCH</h3>
+                    <p>Have questions or special requests?
+                        Email us at: support@anteiku.com
+                        <br>
+                        Or fill out our contact form on the website
+                    </p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Visit Us</h3>
+                    <p>Cozy and inviting ambiance
+                        <br>
+                        Free Wi-Fi and charging stations
+                        <br>
+                        Outdoor seating available</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>OPENING HOURS</h3>
+                    <p>We are <br>open everyday.
+                    <br>
+                    8:00 AM - 9:00 PM
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="contact-container">
+            <div class="contact-header">
+                <h1>CONTACT FORM</h1>
+                <p>Do you have a question?</p>
+            </div>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" name="name" required>
+                    <p class="error-message">Please enter your name</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Your e-mail</label>
+                    <input type="email" id="email" name="email" required>
+                    <p class="error-message">Please enter a valid email address</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                    <p class="error-message">Please enter a subject</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <p class="error-message">Please enter your message</p>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send a message</button>
+                
+                <div class="error-message" id="formErrorMessage" style="display: none; margin-top: 15px;">
+                    One or more fields have an error. Please check and try again.
+                </div>
+            </form>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>DO YOU HAVE QUESTIONS?</h3>
+                    <p>noreply@anteiku.com</p>
+                </div>
+                <div class="footer-column">
+                    <p class="address">LOCATION: <br>20th ward <br> Nerima <br> Japan</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-skype"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>BOOK A TABLE</h3>
+                    <p>+81 (0) 383 766 284</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Anteiku | All Rights Reserved | Powered by HTML & CSS</p>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        const content = document.querySelector('.main-content');
+        sidebar.classList.toggle('active');
+        content.classList.toggle('shifted');
+    }
+</script>
+
+</body>
+</html>

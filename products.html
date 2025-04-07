@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drinks Menu | Anteiku</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background: #f4f4f4;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary-color: #e85d04;
+            --dark-color: #1c1f26;
+            --light-color: #f4f4f4;
+        }
+
+        /* Mobile Toggle Button */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background-color: var(--dark-color);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 40px;
+            text-align: center;
+            position: fixed;
+            height: 120vh;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            transform: translateX(0); /* Default to visible */
+        }
+
+        .sidebar.active {
+            transform: translateX(-100%); /* Hide sidebar */
+        }
+
+        .sidebar .logo img {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .logo h2 {
+            font-size: 40px;
+            font-weight: normal;
+        }
+
+        .sidebar .logo p {
+            font-size: 14px;
+            color: #c4c4c4;
+            margin-bottom: 20px;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        .sidebar nav ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            transition: 0.3s;
+            display: block;
+            padding: 8px 0;
+        }
+
+        .sidebar nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .sidebar .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            margin: 20px 0;
+            transition: 0.3s;
+            border: none;
+        }
+
+        .sidebar .btn:hover {
+            background: #d14a00;
+            color: #fff;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 300px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content.shifted {
+            margin-left: 0; /* No margin when sidebar is hidden */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: url('about.jpg') no-repeat center/cover;
+            min-height: 60vh;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: relative;
+            padding: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-overlay {
+            background: rgba(232, 93, 4, 0.9);
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            max-width: 300px;
+            margin-left: auto;
+        }
+
+        .hero-overlay p {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-overlay h2 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: large;
+            margin-left: 50px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .menu-header h1 {
+            color: #4B2E1A;
+        }
+
+        .menu-header a {
+            color: #4B2E1A;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px solid #4B2E1A;
+        }
+
+        .drinks-grid1, .drinks-grid2, .drinks-grid3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 10px;
+            background-color: #361f12;
+            padding: 20px;
+        }
+
+        .drink-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .drink-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .drink-item p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .drink-item button {
+            background-color: #4B2E1A;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .drink-item button:hover {
+            background-color: #361f12;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 250px;
+            }
+
+            .main-content {
+                margin-left: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .main-content.shifted {
+                margin-left: 300px;
+            }
+
+            .hero-section {
+                background: url(bg.jpg) no-repeat center/cover;
+                min-height: 50vh;
+                padding: 60px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-overlay h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .footer {
+    background: #bab2b2;
+    color: #333;
+    padding: 60px 20px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+    margin: 20px;
+    text-align: center;
+}
+
+.footer-column h3 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.footer-column p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.social-icons a {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--dark-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    background: var(--dark-color);
+    color: #fff;
+    font-size: 0.9rem;
+}
+    </style>
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="Anteiku Logo">
+            <h2>Anteiku</h2>
+            <p>Original Taste <br> Est. 1987</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="order.html" class="btn">Buy Now <span class="arrow">&#10148;</span></a>
+    </aside>
+
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="main-content">
+        <section class="hero-section">
+            <div class="hero-overlay">
+                <div class="hero-content container py-5">
+                    <h1 class="display-4">Our Menu</h1>
+                    <p class="lead">Feel free to check our menu!</p>
+                    <p class="mt-5">We are open 7 days a week<br><strong>8AM - 9PM</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <div class="menu-header">
+            <h1>Our Menu</h1>
+        </div>
+
+        <div class="drinks-grid1">
+            <div class="drink-item" data-name="Apple & Raspberry Slush" data-price="120" data-image="pd-1.webp">
+                <img src="pd-1.webp" alt="Drink 1">
+                <p>Apple & Raspberry Slush</p>
+                <p>₱120</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="drink-item" data-name="Avocado & Raspberry Milk Slush" data-price="120" data-image="pd-2.webp">
+                <img src="pd-2.webp" alt="Drink 2">
+                <p>Avocado & Raspberry Milk Slush</p>
+                <p>₱120</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="drink-item" data-name="Bacon & Cream Cheese Pizza" data-price="280" data-image="pd-3.webp">
+                <img src="pd-3.webp" alt="Drink 3">
+                <p>Bacon & Cream Cheese Pizza</p>
+                <p>₱280</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="drink-item" data-name="Bacon 4 Cheese Sandwich" data-price="250" data-image="pd-4.webp">
+                <img src="pd-4.webp" alt="Drink 4">
+                <p>Bacon 4 Cheese Sandwich</p>
+                <p>₱250</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="drinks-grid2">
+          <div class="drink-item" data-name="Beef Tapa" data-price="120" data-image="pd-5.webp">
+            <img src="pd-5.webp" alt="Drink 4">
+            <p>Bacon 4 Cheese Sandwich</p>
+            <p>₱120</p>
+            <button onclick="addToCart(this)">Add to Cart</button>
+          </div>
+          <div class="drink-item" data-name="Boneless Bangus" data-price="130" data-image="pd-6.webp">
+            <img src="pd-6.webp" alt="Drink 4">
+            <p>Boneless Bangus</p>
+            <p>₱130</p>
+            <button onclick="addToCart(this)">Add to Cart</button>
+          </div>
+          <div class="drink-item" data-name="Espresso" data-price="100" data-image="pd-7.webp">
+            <br><br>
+            <img src="pd-7.webp" alt="Drink 4"><br><br>
+            <p>Espresso</p>
+            <p>₱100</p>
+            <button onclick="addToCart(this)">Add to Cart</button>
+          </div>
+          <div class="drink-item" data-name="Hot Cafe Latte" data-price="100" data-image="pd-8.webp"><br><br>
+            <img src="pd-8.webp" alt="Drink 4"><br><br>
+            <p>Hot Cafe Latte</p>
+            <p>₱100</p>
+            <button onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="drinks-grid3">
+          <div class="drink-item" data-name="Corned Beef" data-price="150" data-image="pd-9.webp">
+            <img src="pd-9.webp" alt="Drink 4">
+            <p>Corned Beef</p>
+            <p>₱150</p>
+            <button onclick="addToCart(this)">Add to Cart</button>
+          </div>
+          <div class="drink-item" data-name="Crème Brûlée Frappe" data-price="130" data-image="pd-10.webp"><br><br>
+            <img src="pd-10.webp" alt="Drink 4"><br><br>
+            <p>Crème Brûlée Frappe</p>
+            <p>₱130</p>
+            <button onclick="addToCart(this)">Add to Cart</button>
+          </div>
+          <div class="drink-item" data-name="Dark Chocolate Frappe" data-price="130" data-image="pd-11.webp"><br><br>
+            <img src="pd-11.webp" alt="Drink 4"><br><br>
+            <p>Dark Chocolate Frappe</p>
+            <p>₱130</p>
+            <button onclick="addToCart(this)">Add to Cart</button>
+          </div>
+          <div class="drink-item" data-name="Hot Matcha Green Tea Latte" data-price="130" data-image="pd-12.webp"><br><br>
+            <img src="pd-12.webp" alt="Drink 4"><br><br>
+            <p>Hot Matcha Green Tea Latte</p>
+            <p>₱130</p>
+            <button onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <footer class="footer">
+          <div class="footer-container">
+              <div class="footer-column">
+                  <h3>DO YOU HAVE QUESTIONS?</h3>
+                  <p>noreply@anteiku.com</p>
+              </div>
+              <div class="footer-column">
+                  <p class="address">LOCATION: <br>20th ward <br> Nerima <br> Japan</p>
+                  <div class="social-icons">
+                      <a href="#"><i class="fab fa-twitter"></i></a>
+                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#"><i class="fab fa-skype"></i></a>
+                  </div>
+              </div>
+              <div class="footer-column">
+                  <h3>BOOK A TABLE</h3>
+                  <p>+81 (0) 383 766 284</p>
+              </div>
+          </div>
+          <div class="footer-bottom">
+              <p>© 2025 Anteiku | All Rights Reserved | Powered by HTML & CSS</p>
+          </div>
+      </footer>
+    </div>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const content = document.querySelector('.main-content');
+            sidebar.classList.toggle('active');
+            content.classList.toggle('shifted');
+        }
+
+        function addToCart(button) {
+            const item = button.closest('.drink-item');
+            const name = item.dataset.name;
+            const price = parseFloat(item.dataset.price);
+            const image = item.dataset.image;
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            const existing = cart.find(product => product.name === name);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ name, price, image, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${name} added to cart!`);
+        }
+    </script>
+</body>
+</html>
